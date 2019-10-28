@@ -60,37 +60,27 @@ string Jogo::escreve() const
 // a implementar
 Crianca& Jogo::perdeJogo(string frase)
 {
-      Crianca *c1 = new Crianca();
-    int numPal = this->numPalavras(frase), i = 0;
-
-
-    list<Crianca> l1 = this->criancas;
-    list<Crianca>::iterator it;
-
+  Crianca *c1 = new Crianca();
+  list<Crianca> l1 = this->criancas;
+  list<Crianca>::iterator it;
+  int numPal = this->numPalavras(frase), i = 0;
     while(l1.size()!=1)
     { 
-      cout << "1" << endl;
+      
       for(it = l1.begin(); it != l1.end(); it++)
       {
-        cout << "2" << endl;
         if(l1.size() == 1)
-        {
-          cout << "3" << endl;
           break;
-        }
 
         i++;
 
         if(i==numPal)
         {
-          cout << "4" << endl;
-          cout << "Apaguei " << it->getNome() << endl;
           l1.erase(it);
           i = 0;
         }
 
       }
-      cout << "5" << endl;
 
     }
 

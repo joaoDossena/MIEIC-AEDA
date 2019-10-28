@@ -32,8 +32,6 @@ unsigned int ParqueEstacionamento::getNumLugares() const { return lotacao; }
 
 unsigned int ParqueEstacionamento::getNumLugaresOcupados() const { return lotacao-vagas; }
 
-
-// a imnplementar
 int ParqueEstacionamento::posicaoCliente(const string &nome) const
 {
 	vector<InfoCartao> v = this->getClientes();
@@ -46,7 +44,6 @@ int ParqueEstacionamento::posicaoCliente(const string &nome) const
     return sequentialSearch(vstr, nome);
 }
 
-//a implementar
 int ParqueEstacionamento::getFrequencia(const string &nome) const
 {
 	int pos = this->posicaoCliente(nome), result;
@@ -58,7 +55,7 @@ int ParqueEstacionamento::getFrequencia(const string &nome) const
     return result;
 }
 
-// a alterar/atualizar ?
+
 bool ParqueEstacionamento::adicionaCliente(const string & nome)
 {
  	if ( numClientes == numMaximoClientes ) return false;
@@ -71,7 +68,6 @@ bool ParqueEstacionamento::adicionaCliente(const string & nome)
 	return true;
 }
 
-// a alterar/atualizar ?
 bool ParqueEstacionamento::retiraCliente(const string & nome)
 {
 	for (vector<InfoCartao>::iterator it = clientes.begin(); it != clientes.end(); it++)
@@ -86,7 +82,7 @@ bool ParqueEstacionamento::retiraCliente(const string & nome)
 	return false;
 }
 
-// a alterar/atualizar ?
+
 bool ParqueEstacionamento::entrar(const string & nome)
 {
 	if ( vagas == 0 ) return false;

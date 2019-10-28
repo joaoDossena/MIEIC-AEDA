@@ -74,7 +74,7 @@ int Camiao::getCarga_maxima() const
 
 //Other Functions
 //Veiculo
-virtual int Veiculo::info() const
+int Veiculo::info() const
 {
 	cout << "Marca: " << this->getMarca() << endl;
 	cout << "Mês: " << this->getMes() << endl;
@@ -107,8 +107,13 @@ int Bicicleta::info() const
 	return 4;
 }
 
+float Bicicleta::calcImposto() const
+{
+	return 0.0;
+}
+
 //Motorizado
-virtual int Motorizado::info() const
+int Motorizado::info() const
 {
 	Veiculo::info();
 	cout << "Combustível: " << this->getCombustivel() << endl;
@@ -141,26 +146,26 @@ float Motorizado::calcImposto() const
 	{
 		if(this->getCombustivel() == "gasolina")
 		{
-			if(this->getCilindrada <= 1000)
+			if(this->getCilindrada() <= 1000)
 				result = 14.56;
-			else if(this->getCilindrada <= 1300)
+			else if(this->getCilindrada() <= 1300)
 				result = 29.06;
-			else if(this->getCilindrada <= 1750)
+			else if(this->getCilindrada() <= 1750)
 				result = 45.15;
-			else if(this->getCilindrada <= 2600)
+			else if(this->getCilindrada() <= 2600)
 				result = 113.98;
-			else if(this->getCilindrada <= 3500)
+			else if(this->getCilindrada() <= 3500)
 				result = 181.17;
 			else
 				result = 320.89;
 		}
 		else
 		{
-			if(this->getCilindrada <= 1500)
+			if(this->getCilindrada() <= 1500)
 				result = 14.56;
-			else if(this->getCilindrada <= 2000)
+			else if(this->getCilindrada() <= 2000)
 				result = 29.06;
-			else if(this->getCilindrada <= 3000)
+			else if(this->getCilindrada() <= 3000)
 				result = 45.15;
 			else
 				result = 113.98;
@@ -170,26 +175,26 @@ float Motorizado::calcImposto() const
 	{
 		if(this->getCombustivel() == "gasolina")
 		{
-			if(this->getCilindrada <= 1000)
+			if(this->getCilindrada() <= 1000)
 				result = 8.10;
-			else if(this->getCilindrada <= 1300)
+			else if(this->getCilindrada() <= 1300)
 				result = 14.56;
-			else if(this->getCilindrada <= 1750)
+			else if(this->getCilindrada() <= 1750)
 				result = 22.65;
-			else if(this->getCilindrada <= 2600)
+			else if(this->getCilindrada() <= 2600)
 				result = 54.89;
-			else if(this->getCilindrada <= 3500)
+			else if(this->getCilindrada() <= 3500)
 				result = 87.13;
 			else
 				result = 148.37;
 		}
 		else
 		{
-			if(this->getCilindrada <= 1500)
+			if(this->getCilindrada() <= 1500)
 				result = 8.10;
-			else if(this->getCilindrada <= 2000)
+			else if(this->getCilindrada() <= 2000)
 				result = 14.56;
-			else if(this->getCilindrada <= 3000)
+			else if(this->getCilindrada() <= 3000)
 				result = 22.65;
 			else
 				result = 54.89;
