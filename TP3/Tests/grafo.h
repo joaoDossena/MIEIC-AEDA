@@ -7,6 +7,7 @@ using namespace std;
  * Versao da classe generica Grafo usando a classe vector
  */
 
+
 template <class N, class A> class Aresta;
 
 template <class N, class A>
@@ -49,7 +50,7 @@ template <class N, class A>
 std::ostream & operator<<(std::ostream &out, const Grafo<N,A> &g);
 
 
-//exceção NoRepetido
+// excecao NoRepetido
 template <class N>
 class NoRepetido
 {
@@ -62,7 +63,33 @@ std::ostream & operator<<(std::ostream &out, const NoRepetido<N> &no)
 { out << "No repetido: " << no.info; return out; }
 
 
-//exceção NoInexistente
+// excecao ArestaRepetida
+template <class N>
+class ArestaRepetida
+{
+public:
+   N info1, info2;
+   ArestaRepetida(N inf1, N inf2) { info1=inf1; info2=inf2; }
+};
+template <class N> 
+std::ostream & operator<<(std::ostream &out, const ArestaRepetida<N> &a)
+{ out << "Aresta repetida: " << a.info1 << " , " << a.info2 ; return out; }
+
+
+// excecao ArestaInexistente
+template <class N>
+class ArestaInexistente
+{
+public:
+   N info1, info2;
+   ArestaInexistente(N inf1, N inf2) { info1=inf1; info2=inf2; }
+};
+template <class N> 
+std::ostream & operator<<(std::ostream &out, const ArestaInexistente<N> &a)
+{ out << "Aresta inexistente: " << a.info1 << " , " << a.info2 ; return out; }
+
+
+// excecao NoInexistente
 template <class N>
 class NoInexistente {
 public:
@@ -76,98 +103,175 @@ template <class N>
 std::ostream & operator<<(std::ostream &out, const NoInexistente<N> &ni)
 { out << "No inexistente: " << ni.info; return out; }
 
-//exceção ArestaRepetida
-template <class A>
-class ArestaRepetida {
-public:
-	No<N,A> *inicio, *destino;
-	ArestaRepetida(No<N,A>* start, No<N,A>* dest) {
-		inicio = start;
-		destino = dest;
-	}
-};
 
-template <class A>
-std::ostream & operator <<(std::ostream &out, const ArestaRepetida<A> &ar)
-{out << "Start: " << ar.inicio << endl << "Destination: " << ar.destino << endl; return out;}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-template <class N, class A>
-Grafo<N,A>::Grafo()
-{
+// implementacao metodos classe Grafo
 
+template <class N, class A> 
+Grafo<N,A>::Grafo() {}
+
+template <class N, class A> 
+Grafo<N,A>::~Grafo() {
+	typename vector< No<N,A> *>::const_iterator it;
+	for (it = this->nos.begin(); it != this->nos.end(); it++)
+		delete *it;
 }
 
+/**
+ * metodo que determina o numero de nos do grafo
+ * @tparam N tipo de dados em conteudo do no
+ * @tparam A tipo de dados em aresta
+ * @return numero de nos do grafo
+ */
 template <class N, class A>
-Grafo<N, A>::~Grafo()
-{
-
-}
-
-template <class N, class A>
-int Grafo<N,A>::numNos(void) const
-{
+int Grafo<N,A>::numNos() const {
 	return this->nos.size();
 }
 
-template <class N, class A>
-int Grafo<N,A>::numArestas(void) const
-{
+template <class N, class A>   
+int Grafo<N,A>::numArestas() const {
+	// Percorre o vetor de nos e, para cada no, obtem o size do vetor de arestas
 	int soma = 0;
 
-	for(unsigned int i = 0; i < this->nos.size(); i++)
-	{
-		soma += this->nos.at(i)->arestas.size();
-	}
+    typename vector< No<N,A> *>::const_iterator it;
 
-	return soma/2;
+	for (it = this->nos.begin(); it != this->nos.end(); it++) {
+		soma += (*it)->arestas.size();
+	}
+	return soma;
 }
 
+template<class N, class A>
+Grafo<N, A> & Grafo<N, A>::inserirNo(const N &inf) {
 
-
-
-template <class N, class A>
-Grafo<N,A> & Grafo<N, A>::inserirNo(const N &dados)
-{
-	unsigned int i;
-	for(i = 0; i < this->nos.size(); i++)
-	{
-		if(this->nos.at(i)->info == dados)
-		{
-			throw NoRepetido<N>(dados);
-		}
+    typename vector< No<N,A> *>::const_iterator it;
+    // Verifica se o no ja existe e lanca excecao
+	for (it = this->nos.begin(); it != this->nos.end(); it++) {
+		if ((*it)->info == inf) throw NoRepetido<N>(inf);
 	}
-	
-	No<N,A> *ptr = new No<N,A>(dados);
-	this->nos.push_back(ptr);
-
+	No<N,A> *no1 = new No<N,A>(inf);
+	nos.push_back(no1);
 	return *this;
 }
 
+template<class N, class A>
+Grafo<N, A> & Grafo<N, A>::inserirAresta(const N &inicio, const N &fim, const A &val) {
+
+	// Percorrer o vetor de nos ate encontrar o No em que info = inicio
+	typename vector< No<N,A> *>::iterator it;
+	typename vector< Aresta<N,A> >::iterator ita;
+	bool encontrouInicio = false;
+	bool encontrouFim = false;
+
+	No<N,A> *noInicio_apt=NULL;
+	No<N,A> *noFim_apt=NULL;
+
+	for (it = this->nos.begin(); it != this->nos.end(); it++)
+	{
+		// procura no vetor de nos o no em que info == inicio
+		if ( (*it)->info == inicio )
+		{
+			// verificar se o vetor de arestas ja tem uma aresta para destino = fim
+			encontrouInicio = true;
+			noInicio_apt=*it;
+			for (ita = (*it)->arestas.begin();  ita != (*it)->arestas.end(); ita++)
+			{
+				// lanca a excecao se for repetida
+				if ( ita->destino->info == fim) throw ArestaRepetida<N> (inicio, fim);
+			}
+			if (encontrouFim==true) break;
+		}
+		else if ( (*it)->info == fim ) {
+			encontrouFim=true;
+			noFim_apt=*it;
+			if (encontrouInicio==true) break;
+		}
+	}
+
+	// se nao encontrar um dos nos, lanca excecao tipo NoInexistente
+	if (!encontrouInicio) throw NoInexistente<N>(inicio);
+	if (!encontrouFim) throw NoInexistente<N>(fim);
+
+	// cria uma nova Aresta
+	Aresta<N,A> aresta1(noFim_apt, val);
+	// insere o objecto no vector de arestas do no
+	noInicio_apt->arestas.push_back(aresta1);
+
+	return *this;
+} 
+
+template<class N, class A>
+A & Grafo<N, A>::valorAresta(const N &inicio, const N &fim) {
+
+	// Percorrer o vetor de nós para obter no em que info=inicio
+
+	typename vector< No<N,A> *>::iterator it;
+	typename vector< Aresta<N,A> >::iterator ita;
+	for (it = this->nos.begin(); it != this->nos.end(); it++) {
+		// procura no vetor de nos o no em que info==inicio
+		if ( (*it)->info == inicio ) {
+			// verificar se o vetor de arestas tem uma aresta para destino=fim
+			for (ita = (*it)->arestas.begin();  ita != (*it)->arestas.end(); ita++) {
+				// Caso encontre faz o return do seu valor
+				if ( ita->destino->info == fim) return ita->valor;
+			}
+			// se não encontrar a aresta, lanca exceção
+			throw ArestaInexistente<N> (inicio, fim);
+		}
+	}
+	// se não encontrar o nó, lanca exceção tipo NoInexistente
+	throw NoInexistente<N>(inicio);
+}
 
 template <class N, class A>
-Grafo<N,A> & Grafo<N,A>::inserirAresta(const N &inicio, const N &fim, const A &val)
+Grafo<N,A> & Grafo<N,A>::eliminarAresta(const N &inicio, const N &fim)
 {
-	unsigned int i, j;
 
-	for(i = 0; i < this->nos.size(); i++)
-	{
-		if(this->nos.at(i) == &inicio)
-		{
-			for(j = 0; j < this->nos.at(i).arestas.size(); j++)
-			{
-				if((this->nos.at(i).arestas.at(j).destino == &fim) && (this->nos.at(i).arestas.at(j).valor == &val))
-				{
-					throw ArestaRepetida<A>(&inicio, &fim);
+	// Percorrer o vetor de nos para obter no em que info=inicio
+
+	typename vector< No<N,A> *>::iterator it;
+	typename vector< Aresta<N,A> >::iterator ita;
+	for (it = this->nos.begin(); it != this->nos.end(); it++) {
+		// procura no vetor de nos o no em que info==inicio
+		if ( (*it)->info == inicio ) {
+			// verificar se o vetor de arestas tem uma aresta para destino=fim
+			for (ita = (*it)->arestas.begin();  ita != (*it)->arestas.end(); ita++) {
+				// Caso encontre elimina a aresta
+				if ( ita->destino->info == fim) {
+					(*it)->arestas.erase(ita);
+					return *this;
 				}
 			}
-
-			break;
+			// N�o encontrando a aresta lan�a exce��o
+			throw ArestaInexistente<N> (inicio, fim);
 		}
 	}
-
-	Aresta<N,A> *ptr = new Aresta<N,A>(&fim, val);
-	this->nos.at(i).arestas.push_back(*ptr);
+	// se nao encontrar o no, lanca excecao tipo NoInexistente
+	throw NoInexistente<N>(inicio);
 
 	return *this;
 }
+
+
+template <class N, class A>
+void Grafo<N,A>::imprimir(std::ostream &os) const
+{
+	typename vector< No<N,A> *>::const_iterator it;
+	typename vector< Aresta<N,A> >::const_iterator ita;
+	for (it = this->nos.begin(); it != this->nos.end(); it++) {
+		os << "( " << (*it)->info ;
+		for (ita = (*it)->arestas.begin();  ita != (*it)->arestas.end(); ita++) {
+			os << "[ " <<  ita->destino->info << " " << ita->valor << "] " ;
+		}
+		os << ") ";
+	}
+}
+
+template <class N, class A> 
+std::ostream & operator<<(std::ostream &out, const Grafo<N, A> &g)
+{
+   g.imprimir(out);
+   return out;
+}
+
+
