@@ -5,6 +5,9 @@ using namespace std;
 
 template <class T>
 class StackExt {
+private: 
+	stack<T> elemStack;
+	stack<T> minStack;
 public:
 	StackExt() {};
 	bool empty() const; 
@@ -14,38 +17,55 @@ public:
 	T &findMin();
 };
 
-// a alterar
 template <class T> 
 bool StackExt<T>::empty() const
 {
-	return true;
+	return elemStack.empty() && minStack.empty();
 }
 
-//a alterar
 template <class T> 
 T& StackExt<T>::top()
 {
     T *novo = new T();
+    if(this->empty())
+    	novo = NULL;
+    else
+    	novo = &elemStack.top();
     return *novo;
 }
 
-//a alterar
 template <class T> 
 void StackExt<T>::pop()
 {
+	if(this->empty())
+		return;
+	else
+	{
+		minStack.pop();
+		elemStack.pop();
+	}
 }
 
-//a alterar
 template <class T> 
 void StackExt<T>::push(const T & val)
 {
+	if(this->empty())
+		minStack.push(val);
+	else if(val < minStack.top())
+		minStack.push(val);
+	else
+		minStack.push(minStack.top());
+	elemStack.push(val);
 }
 
-//a alterar
 template <class T> 
 T& StackExt<T>::findMin()
 {
     T *novo = new T();
+    if(this->empty())
+    	novo = NULL;
+    else
+    	novo = &minStack.top();
     return *novo;
 }
 

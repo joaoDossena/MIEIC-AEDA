@@ -14,7 +14,7 @@
 using testing::Eq;
 
 
-TEST(test_1, StackExt_FindMin){
+/*TEST(test_1, StackExt_FindMin){
     StackExt<int> s1;
     // Teste ao empty()
     EXPECT_EQ(true, s1.empty());
@@ -73,7 +73,7 @@ TEST(test_1, StackExt_FindMin){
     // Verifica se executa em TEMPO CONSTANTE
     // NOTA: o parametro com valor 10 significa que sao considerados constantes valores no intervalo [-10, 10]
     EXPECT_EQ(true, isConstant(elapsedTime, size, 10));
-}
+}*/
 
 TEST(test_2, a_ConstructorCliente){
     srand(time(NULL));

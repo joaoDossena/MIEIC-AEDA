@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/joao/Desktop/FEUP/AEDA/TP6/Tests/balcao.cpp
+queue
+-
+cstdlib
+-
+balcao.h
+/home/joao/Desktop/FEUP/AEDA/TP6/Tests/balcao.h
+exceptions.h
+/home/joao/Desktop/FEUP/AEDA/TP6/Tests/exceptions.h
+
+/home/joao/Desktop/FEUP/AEDA/TP6/Tests/balcao.h
+iostream
+-
+queue
+-
+
+/home/joao/Desktop/FEUP/AEDA/TP6/Tests/exceptions.h
+string
+-
+
