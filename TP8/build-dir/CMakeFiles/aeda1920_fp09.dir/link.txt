@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/aeda1920_fp09.dir/main.cpp.o CMakeFiles/aeda1920_fp09.dir/Tests/tests.cpp.o CMakeFiles/aeda1920_fp09.dir/Tests/aposta.cpp.o CMakeFiles/aeda1920_fp09.dir/Tests/jogador.cpp.o  -o aeda1920_fp09 lib/libgtest.a lib/libgtest_main.a lib/libgtest.a -lpthread 
