@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/joao/Desktop/FEUP/AEDA/TP10 - Disjoint Sets/Tests/disjointSets.h
+vector
+-
+
+/home/joao/Desktop/FEUP/AEDA/TP10 - Disjoint Sets/Tests/maze.cpp
+maze.h
+/home/joao/Desktop/FEUP/AEDA/TP10 - Disjoint Sets/Tests/maze.h
+iostream
+-
+iomanip
+-
+utility
+-
+algorithm
+-
+
+/home/joao/Desktop/FEUP/AEDA/TP10 - Disjoint Sets/Tests/maze.h
+disjointSets.h
+/home/joao/Desktop/FEUP/AEDA/TP10 - Disjoint Sets/Tests/disjointSets.h
+
