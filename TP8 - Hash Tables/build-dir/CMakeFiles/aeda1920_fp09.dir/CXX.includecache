@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/Tests/aposta.h
+unordered_set
+-
+vector
+-
+string
+-
+
+/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/Tests/jogador.cpp
+jogador.h
+/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/Tests/jogador.h
+
+/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/Tests/jogador.h
+aposta.h
+/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/Tests/aposta.h
+string
+-
+

@@ -1,0 +1,174 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/joao/Desktop/FEUP/AEDA/TP8/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f9001/fast && /usr/bin/make -f CMakeFiles/cmTC_f9001.dir/build.make CMakeFiles/cmTC_f9001.dir/build
+make[1]: Entering directory '/home/joao/Desktop/FEUP/AEDA/TP8/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f9001.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_f9001.dir/src.c.o   -c /home/joao/Desktop/FEUP/AEDA/TP8/build-dir/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_f9001
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f9001.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_f9001.dir/src.c.o  -o cmTC_f9001 
+/usr/bin/ld: CMakeFiles/cmTC_f9001.dir/src.c.o: in function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x4a): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x5b): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_f9001.dir/build.make:87: cmTC_f9001] Error 1
+make[1]: Leaving directory '/home/joao/Desktop/FEUP/AEDA/TP8/build-dir/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_f9001/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/joao/Desktop/FEUP/AEDA/TP8/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_84515/fast && /usr/bin/make -f CMakeFiles/cmTC_84515.dir/build.make CMakeFiles/cmTC_84515.dir/build
+make[1]: Entering directory '/home/joao/Desktop/FEUP/AEDA/TP8/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_84515.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_84515.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_84515
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84515.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_84515.dir/CheckFunctionExists.c.o  -o cmTC_84515 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_84515.dir/build.make:87: cmTC_84515] Error 1
+make[1]: Leaving directory '/home/joao/Desktop/FEUP/AEDA/TP8/build-dir/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_84515/fast] Error 2
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/joao/Desktop/FEUP/AEDA/TP8 - Dispersion Tables/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_76d7d/fast && /usr/bin/make -f CMakeFiles/cmTC_76d7d.dir/build.make CMakeFiles/cmTC_76d7d.dir/build
+make[1]: Entering directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Dispersion Tables/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_76d7d.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_76d7d.dir/src.c.o   -c "/home/joao/Desktop/FEUP/AEDA/TP8 - Dispersion Tables/build-dir/CMakeFiles/CMakeTmp/src.c"
+Linking C executable cmTC_76d7d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_76d7d.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_76d7d.dir/src.c.o  -o cmTC_76d7d 
+/usr/bin/ld: CMakeFiles/cmTC_76d7d.dir/src.c.o: in function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x4a): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x5b): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_76d7d.dir/build.make:87: cmTC_76d7d] Error 1
+make[1]: Leaving directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Dispersion Tables/build-dir/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_76d7d/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/joao/Desktop/FEUP/AEDA/TP8 - Dispersion Tables/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ba6e7/fast && /usr/bin/make -f CMakeFiles/cmTC_ba6e7.dir/build.make CMakeFiles/cmTC_ba6e7.dir/build
+make[1]: Entering directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Dispersion Tables/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ba6e7.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_ba6e7.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_ba6e7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba6e7.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_ba6e7.dir/CheckFunctionExists.c.o  -o cmTC_ba6e7 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_ba6e7.dir/build.make:87: cmTC_ba6e7] Error 1
+make[1]: Leaving directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Dispersion Tables/build-dir/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_ba6e7/fast] Error 2
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_a1318/fast && /usr/bin/make -f CMakeFiles/cmTC_a1318.dir/build.make CMakeFiles/cmTC_a1318.dir/build
+make[1]: Entering directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a1318.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_a1318.dir/src.c.o   -c "/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/build-dir/CMakeFiles/CMakeTmp/src.c"
+Linking C executable cmTC_a1318
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a1318.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_a1318.dir/src.c.o  -o cmTC_a1318 
+/usr/bin/ld: CMakeFiles/cmTC_a1318.dir/src.c.o: in function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x4a): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x5b): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_a1318.dir/build.make:87: cmTC_a1318] Error 1
+make[1]: Leaving directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/build-dir/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_a1318/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_860c8/fast && /usr/bin/make -f CMakeFiles/cmTC_860c8.dir/build.make CMakeFiles/cmTC_860c8.dir/build
+make[1]: Entering directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_860c8.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_860c8.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_860c8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_860c8.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_860c8.dir/CheckFunctionExists.c.o  -o cmTC_860c8 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_860c8.dir/build.make:87: cmTC_860c8] Error 1
+make[1]: Leaving directory '/home/joao/Desktop/FEUP/AEDA/TP8 - Hash Tables/build-dir/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_860c8/fast] Error 2
+
+
+

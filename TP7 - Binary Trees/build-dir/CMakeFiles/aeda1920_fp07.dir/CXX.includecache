@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/joao/Desktop/FEUP/AEDA/TP7 - Binary Trees/Tests/binaryTree.h
+iostream
+-
+stack
+-
+queue
+-
+
+/home/joao/Desktop/FEUP/AEDA/TP7 - Binary Trees/Tests/jogo.cpp
+jogo.h
+/home/joao/Desktop/FEUP/AEDA/TP7 - Binary Trees/Tests/jogo.h
+sstream
+-
+
+/home/joao/Desktop/FEUP/AEDA/TP7 - Binary Trees/Tests/jogo.h
+binaryTree.h
+/home/joao/Desktop/FEUP/AEDA/TP7 - Binary Trees/Tests/binaryTree.h
+iostream
+-
+stdlib.h
+-
+
