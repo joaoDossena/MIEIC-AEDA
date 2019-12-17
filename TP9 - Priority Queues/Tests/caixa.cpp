@@ -45,19 +45,35 @@ ostream& operator<<(ostream& os, Objeto obj) {
 
 unsigned Caixa::ultimoId = 1;
 
-// a alterar
-bool Objeto::operator<(const Objeto& o1) const {
-	return true;
+bool Objeto::operator<(const Objeto& o1) const
+{
+	return this->peso < o1.peso;
 }
 
-// a alterar
-bool Caixa::operator<(const Caixa& c1) const {
-	return true;
+bool Caixa::operator<(const Caixa& c1) const
+{
+	return this->cargaLivre > c1.cargaLivre;
 }
 
-// a alterar
-string Caixa::imprimeConteudo() const {
-	return "";
+string Caixa::imprimeConteudo() const
+{
+	stringstream result;
+	unsigned int cxID = this->id;
+	STACK_OBJS buffer = this->objetos;
+	if(buffer.empty())
+		result << "Caixa " << cxID << " vazia!" << endl;
+	else
+	{
+		result << "C" << cxID << "[" << " ";
+		while(!buffer.empty())
+		{
+			result << buffer.top() << " ";
+			buffer.pop();
+		}
+		result << "]";
+	}
+
+	return result.str();
 }
 
 
