@@ -4,6 +4,9 @@ This repository has all of my work for the subject of Algorithms and Data Struct
 
 Final Grade: 16
 
+## To do:
+- [ ] Finish last exercise of TP10 
+
 ## List of Contents:
 - TP1: Classes
 - TP2: Inheritance and Polymorphism
